@@ -79,5 +79,6 @@ Vagrant.configure("2") do |config|
 		master.vm.provider :virtualbox do |vb|
 			vb.name="master"
 		end
+		master.vm.provision "shell", path: "install.sh"
 	end
 end
