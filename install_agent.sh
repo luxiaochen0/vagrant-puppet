@@ -10,5 +10,9 @@ gpgkey=http://nas.luxiaochen.com:20082/puppet/RPM-GPG-KEY-puppet
 enabled=1
 gpgcheck=1
 EOF
-#sudo yum install puppet -y
-#sudo yum install puppetserver -y
+
+sudo yum install puppet -y
+
+#sudo systemctl enable puppet
+#sudo systemctl start puppet
+#sudo reboot

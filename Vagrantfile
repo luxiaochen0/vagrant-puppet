@@ -73,12 +73,22 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
   
 	config.vm.define "master" do |master|
-		#nginx.ssh.password = "123456"
-		master.vm.hostname = "nginx"
+		master.vm.hostname = "master"
 		master.vm.network "private_network", ip: "192.168.10.11"		
 		master.vm.provider :virtualbox do |vb|
 			vb.name="master"
+			vb.memory=2048
+			vb.cpus=2
 		end
-		master.vm.provision "shell", path: "install.sh"
+		master.vm.provision "shell", path: "install_master.sh"
 	end
+	
+	#config.vm.define "agent" do |agent|
+	#	agent.vm.hostname = "agent"
+	#	agent.vm.network "private_network", ip: "192.168.10.12"
+	#	agent.vm.provider :virtualbox do |vb|
+	#		vb.name="agent"
+	#	end
+	#	agent.vm.provision "shell", path: "install_agent.sh"
+	#end
 end
