@@ -11,7 +11,12 @@ enabled=1
 gpgcheck=1
 EOF
 
+#安装
 sudo yum install puppet -y
+
+#修改hosts
+sudo sed -i '$a\192.168.10.11 master' /etc/hosts
+sudo sed -i '$a\192.168.10.12 agent' /etc/hosts
 
 #sudo systemctl enable puppet
 #sudo systemctl start puppet

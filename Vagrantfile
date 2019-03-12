@@ -83,12 +83,12 @@ Vagrant.configure("2") do |config|
 		master.vm.provision "shell", path: "install_master.sh"
 	end
 	
-	#config.vm.define "agent" do |agent|
-	#	agent.vm.hostname = "agent"
-	#	agent.vm.network "private_network", ip: "192.168.10.12"
-	#	agent.vm.provider :virtualbox do |vb|
-	#		vb.name="agent"
-	#	end
-	#	agent.vm.provision "shell", path: "install_agent.sh"
-	#end
+	config.vm.define "agent" do |agent|
+		agent.vm.hostname = "agent"
+		agent.vm.network "private_network", ip: "192.168.10.12"
+		agent.vm.provider :virtualbox do |vb|
+			vb.name="agent"
+		end
+		agent.vm.provision "shell", path: "install_agent.sh"
+	end
 end

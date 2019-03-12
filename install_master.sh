@@ -11,10 +11,20 @@ enabled=1
 gpgcheck=1
 EOF
 
+#安装
 sudo yum install puppetserver -y
 
-sudo sed -i 's/^JAVA_ARGS="-Xms2g -Xmx2g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"$/JAVA_ARGS="-Xms1g -Xmx1g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"/' /etc/sysconfig/puppetserver
+#修改hosts
+sudo sed -i '$a\192.168.10.11 master' /etc/hosts
+sudo sed -i '$a\192.168.10.12 agent' /etc/hosts
 
-#sudo systemctl enable puppetserver
-#sudo systemctl start puppetserver
-#sudo reboot
+#修改内存
+sudo sed -i 's/-Xms2g -Xmx2g/-Xms1g -Xmx1g/' /etc/sysconfig/puppetserver
+
+#设置证书
+sudo /opt/puppetlabs/bin/puppetserver ca setup
+sudo systemctl enable puppetserver
+sudo systemctl start puppetserver
+#设置puppetserver主机名
+sudo /opt/puppetlabs/bin/puppet config set server master
+
