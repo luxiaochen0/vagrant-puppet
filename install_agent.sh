@@ -18,6 +18,9 @@ sudo yum install puppet -y
 sudo sed -i '$a\192.168.10.11 master' /etc/hosts
 sudo sed -i '$a\192.168.10.12 agent' /etc/hosts
 
-#sudo systemctl enable puppet
-#sudo systemctl start puppet
-#sudo reboot
+#设置puppetserver主机名
+sudo /opt/puppetlabs/bin/puppet config set server master
+
+#启动服务
+sudo systemctl enable puppet
+sudo systemctl start puppet

@@ -25,6 +25,10 @@ sudo sed -i 's/-Xms2g -Xmx2g/-Xms1g -Xmx1g/' /etc/sysconfig/puppetserver
 sudo /opt/puppetlabs/bin/puppetserver ca setup
 sudo systemctl enable puppetserver
 sudo systemctl start puppetserver
+
 #设置puppetserver主机名
 sudo /opt/puppetlabs/bin/puppet config set server master
+
+#创建自动化运维
+sudo cp /vagrant/code/site.pp /etc/puppetlabs/code/environments/production/manifests/
 
