@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "centos/7"
+  # config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -73,6 +73,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
   
 	config.vm.define "master" do |master|
+		master.vm.box = "centos/7"
 		master.vm.hostname = "master"
 		master.vm.network "private_network", ip: "192.168.10.11"		
 		master.vm.provider :virtualbox do |vb|
@@ -84,11 +85,12 @@ Vagrant.configure("2") do |config|
 	end
 	
 	config.vm.define "agent" do |agent|
+		agent.vm.box = "centos/6"
 		agent.vm.hostname = "agent"
 		agent.vm.network "private_network", ip: "192.168.10.12"
 		agent.vm.provider :virtualbox do |vb|
 			vb.name="agent"
 		end
-		agent.vm.provision "shell", path: "install_agent.sh"
+		agent.vm.provision "shell", path: "install_agent_centos6.sh"
 	end
 end
